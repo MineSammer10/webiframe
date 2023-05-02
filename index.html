@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Website Viewer</title>
+</head>
+<body>
+	<form>
+		<label for="url">Enter a URL:</label>
+		<input type="text" name="url" id="url" placeholder="https://example.com">
+		<button type="submit">Go</button>
+	</form>
+
+	<div id="iframe-container"></div>
+
+	<script>
+		const form = document.querySelector('form');
+		const iframeContainer = document.querySelector('#iframe-container');
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const url = event.target.url.value;
+
+			if (!url.startsWith('https://') && !url.startsWith('http://')) {
+				url = `https://${url}`;
+			}
+
+			iframeContainer.innerHTML = `<iframe src="${url}" width="100%" height="800"></iframe>`;
+		});
+	</script>
+</body>
+</html>
